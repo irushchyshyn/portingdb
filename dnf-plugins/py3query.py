@@ -189,6 +189,9 @@ class Py3QueryCommand(dnf.cli.Command):
         demands.sack_activation = True
         demands.available_repos = True
 
+        # Ignore packages which are modules.
+        self.base.conf.exclude_pkgs(['*.module_*'])
+
     @staticmethod
     def set_argparser(parser):
         """Parse command line arguments."""
