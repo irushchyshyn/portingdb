@@ -209,14 +209,14 @@ def load_from_directories(db, directories):
     bulk_load(db, values, tables.CollectionStatus.__table__,
               key_columns=["collection_ident", "status"])
 
-    for collection in col_map.values():
+    for collection in ['fedora']:
         package_infos = data_from_file(directories, collection)
-        try:
-            more_infos = data_from_file(directories, collection + '-update')
-        except FileNotFoundError:
-            pass
-        else:
-            _merge_updates(package_infos, more_infos, warnings, (collection, ))
+        # try:
+        #     more_infos = data_from_file(directories, collection + '-update')
+        # except FileNotFoundError:
+        #     pass
+        # else:
+            # _merge_updates(package_infos, more_infos, warnings, (collection, ))
 
         # Base packages
         values = [{
